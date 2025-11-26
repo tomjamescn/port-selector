@@ -10,23 +10,48 @@
 - ⚡ **快速查找**: 在指定范围内快速找到可用端口
 - 📊 **详细报告**: 清晰展示端口状态和进程信息
 
-## 安装
+## 快速开始
 
-使用 UV（推荐）:
+### 方法一：使用 UV 直接运行（推荐，无需安装）
 
 ```bash
 # 克隆项目
 git clone <repository-url>
 cd port-selector
 
-# 使用 UV 安装
-uv pip install -e .
+# 方式1: 使用 uv run（推荐）
+uv run port-selector
+
+# 方式2: 使用 uvx
+uvx --from . port-selector
+
+# 方式3: 使用便捷脚本
+chmod +x run.sh
+./run.sh
+
+# 非交互模式
+uv run port-selector --non-interactive
+
+# 指定参数
+uv run port-selector --start-port 3000 --end-port 4000 --scan-dir . --count 10
+
+# 使用脚本指定参数
+./run.sh --start-port 3000 --end-port 4000 --non-interactive
 ```
 
-或使用 pip:
+> 💡 **提示**: 查看 [QUICKSTART.md](QUICKSTART.md) 获取更多使用示例和常用命令
+
+### 方法二：安装后使用
 
 ```bash
+# 使用 UV 安装
+uv pip install -e .
+
+# 或使用 pip
 pip install -e .
+
+# 然后直接运行
+port-selector
 ```
 
 ## 使用方法
@@ -36,6 +61,10 @@ pip install -e .
 直接运行命令，程序会引导你完成配置：
 
 ```bash
+# 使用 uv run
+uv run port-selector
+
+# 或已安装
 port-selector
 ```
 
@@ -51,13 +80,13 @@ port-selector
 
 ```bash
 # 在 8000-9000 范围内查找 5 个可用端口
-port-selector --start-port 8000 --end-port 9000 --scan-dir . --count 5
+uv run port-selector --start-port 8000 --end-port 9000 --scan-dir . --count 5
 
 # 非交互模式（使用默认值）
-port-selector --non-interactive
+uv run port-selector --non-interactive
 
 # 指定特定范围
-port-selector --start-port 3000 --end-port 4000 --scan-dir /path/to/project
+uv run port-selector --start-port 3000 --end-port 4000 --scan-dir /path/to/project
 ```
 
 ### 命令行选项
@@ -127,21 +156,6 @@ Options:
 --- Summary ---
 ✓ Total available ports: 5
 ℹ First available port: 8000
-```
-
-## 使用 UV 运行
-
-如果你使用 UV 包管理器，可以直接运行：
-
-```bash
-# 开发模式安装
-uv pip install -e .
-
-# 运行工具
-port-selector
-
-# 或者使用 uvx 直接运行（无需安装）
-uvx --from . port-selector
 ```
 
 ## 依赖项
