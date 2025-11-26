@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+      - "8443:443"
+
+  api:
+    image: node:18
+    ports:
+      - "3000:3000"
+    expose:
+      - "3001"
+
+  database:
+    image: postgres:15
+    ports:
+      - "5432:5432"
